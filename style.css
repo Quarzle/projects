@@ -23,6 +23,8 @@ body {
 
 .meta {
     display: none;
+    font-size: 0px;
+    color: var(--primary-colour);
 }
 
 .button_basic {
