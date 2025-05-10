@@ -1,0 +1,28 @@
+ul {
+    padding: 0;
+    width: 80%;
+    margin: auto;
+}
+
+li {
+    width: 30%;
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+    border-radius: 6px;;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-colour);
+}
+
+audio {
+    width: 100%;
+    margin: auto;
+    color: #000;
+}

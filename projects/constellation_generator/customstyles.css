@@ -3,6 +3,7 @@ canvas {
     text-align: center;
     margin: auto;
     border-radius: 4px;
+    width: 100%;
 }
 
 .button_toggle {
@@ -30,4 +31,16 @@ p {
     margin: auto;
     color: var(--light-colour);
     width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+    p {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    p {
+        width: 100%;
+    }
 }
