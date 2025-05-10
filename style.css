@@ -23,6 +23,18 @@ body {
     color: var(--light-colour);
 }
 
+.about {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.link_basic {
+    text-decoration: none;
+    color: #327bc4;
+}
+
 .meta {
     display: none;
     font-size: 0px;
