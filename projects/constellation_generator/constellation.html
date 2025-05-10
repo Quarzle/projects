@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>constellations</title>
+        <link rel="stylesheet" href="../../style.css">
+        <script src="../../responsive_script.js"></script>
+        <link rel="stylesheet" href="../../normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="customstyles.css">
+    </head>
+    <body>
+        <div class="topnav" id="myTopnav">
+            <a href="../../index.html">Home</a>
+            <a href="../../projects.html" class="active">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div class="main_content">
+            <div class="page_info">
+                <h1>Constellation Maker</h1>
+                <hr>
+                <p>A simple algorithm for generating an image with made up constellations</p>
+                <p>
+                    This algorithm creates a random gris of stars and offsets them randomly.
+                    The stars are then connected with lines to the closest stars to create a constellation-like effect.
+                </p>
+            </div>
+            <br>
+            <div class="centre">
+            <canvas id="gameCanvas" width="1000" height="500"></canvas>
+                <h3>Click to generate again</h3>
+                <button id="generateLines" onclick="draw()" class="button_basic">Generate</button>
+                <button id="generateDots" onclick="toggleStars()" class="button_toggle">Toggle stars (stars on)</button>
+            </div>
+            <br>
+        </div>    
+        <div class="footer">
+            &copy; 2025 
+            <a href="../../index.html">Home</a> |
+            <a href="../../projects.html">Projects</a> |
+            <a href="#contact">Contact</a> |
+            <a href="#about">About</a>
+        </div>
+    </body>
+    <script src="constellation.js"></script>
+</html>

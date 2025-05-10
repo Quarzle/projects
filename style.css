@@ -1,0 +1,269 @@
+
+
+html:root {
+    --primary-colour: #004283;
+    --secondary-colour: #1e60a3;
+    --dark-colour: #010c41;
+    --black-colour: #000000;
+    --light-colour: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+    color: var(--light-colour);
+    background-color: var(--black-colour);
+}
+
+body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--black-colour);
+    color: var(--light-colour);
+}
+
+.button_basic {
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button_basic:hover {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+    transition: background-color 0.3s ease;
+}
+
+.centre {
+    text-align: center;
+}
+
+.search_bar {
+    margin: auto;
+    text-align: center;
+    padding: 0px;
+    width: 80%;
+}
+
+.search_bar button {
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.search_bar button:hover {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+    transition: background-color 0.3s ease;
+}
+
+.search_bar input[type=text] {
+    width: 50%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid var(--secondary-colour);
+    border-radius: 5px;
+    background-color: var(--dark-colour);
+    color: var(--light-colour);
+}
+
+.search_bar input[type=text]:focus {
+    outline: none;
+    border: 2px solid var(--light-colour);
+}
+
+.footer {
+    overflow: hidden;
+    margin: 0px;
+    background-color: var(--primary-colour);
+    color: var(--light-colour);
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    width: 100%;    
+}
+
+.footer a {
+    color: var(--light-colour);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--secondary-colour);
+    text-decoration: none;
+}
+
+.page_info {
+    margin: 0px 40px 40px 40px;
+    background-color: inherit;
+    color: inherit;
+    padding: 20px;
+    text-align: center;
+}
+
+.page_info hr {
+    margin-left: auto;
+    width: 70%;
+    border: 0;
+    height: 1px;
+    background-color: var(--light-colour);
+}
+
+.main_content {
+    /* make the height extend to fill the screen exactly if there isn't enough content */
+    min-height: calc(100vh - 146px);
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--dark-colour);
+    padding-bottom: 20px;
+}
+
+.card_holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    text-align: center;
+    background-color: var(--primary-colour);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 20%;
+    display: inline-block;
+    min-height: 200px;
+    /* make the content vertically centred  */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.card button {
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+}
+
+/* Add a hover and fade in effect to the button */
+.card button:hover {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    margin: 0px;
+    background-color: var(--primary-colour);
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: block;
+    color: var(--light-colour);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+  }
+  
+  /* Add an active class to highlight the current page */
+  .topnav a.active {
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+  }
+  
+  /* Hide the link that should open and close the topnav on small screens */
+  .topnav .icon {
+    display: none;
+  }
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .card h2 {
+        font-size: large;
+    }
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .card {
+        width: 80%;
+        margin: 10px 0;
+    }
+    .card h2{
+        font-size: x-large;
+    }
+    .main_content {
+        width: calc(100% - 40px);
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
