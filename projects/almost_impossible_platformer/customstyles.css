@@ -1,0 +1,19 @@
+.window {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border: none;
+    /**
+     * Center the window
+     */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+.button_basic {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
