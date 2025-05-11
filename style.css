@@ -248,10 +248,16 @@ body {
     .card h2 {
         font-size: large;
     }
+    .about{
+        width: 80%;
+    }
 }
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
+    .about{
+        width: 95%;
+    }
     .topnav a:not(:first-child) {
         display: none;
     }
