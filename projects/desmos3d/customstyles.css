@@ -1,0 +1,10 @@
+iframe {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+}
+
+@media screen and (max-width: 700px) {
+    iframe {
+        width: 75%;
+    }
+}
