@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.getElementById('cardHolder');
     const cards = Array.from(cardContainer.getElementsByClassName('card'));
 
+    //search with enter
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            orderCards();
+            document.getElementById('searchInput').blur();
+        }
+        
+    });
+
     // Add event listener to the order button
     orderButton.addEventListener('click', orderCards);
 
