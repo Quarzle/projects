@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kuwahara filter</title>
+        <title>Lustre sheet music</title>
         <link rel="stylesheet" href="../../style.css">
         <script src="../../responsive_script.js"></script>
         <link rel="stylesheet" href="../../normalize.css">
@@ -22,20 +22,24 @@
         </div>
         <div class="main_content">
             <div class="page_info">
-                <h1>Kuwahara filter</h1>
+                <h1>Lustre sheet music</h1>
                 <hr>
                 <p>
-                    The Kuwahara filter is a filter that smooths an image while preserving edges. larger images may take a while to process on devices with lower performance CPUs.
+                    This was the first song I wrote with the intention of making it playable on a real instrument.
                 </p>
                 <p>
-                    Originally, the Kuwahara filter was used to reduce noise, but now it is mostly used to create stylized painting-like images.
+                    I also learnt a lot about how to use <a class="link_basic" href="https://musescore.org/en/download">MuseScore</a> while making this.
                 </p>
             </div>
             <br>
             <div class="centre">
-                <input type="file" id="fileInput" accept="image/*">
-                <img src="" id="image">      
-                <canvas id="canvas" width="1000" height="500"></canvas>
+                <img src="Lustre.svg" id="image">
+                <br>
+                <h3>Listen</h3>
+                <audio controls>
+                    <source src="Lustre.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> 
             </div>
             <br>
         </div>    
@@ -47,5 +51,4 @@
             <a href="../../about.html">About</a>
         </div>
     </body>
-    <script src="filter.js"></script>
 </html>
