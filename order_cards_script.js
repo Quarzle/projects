@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.getElementById('cardHolder');
     const cards = Array.from(cardContainer.getElementsByClassName('card'));
 
+    //search at load
+    orderCards()
+
     //search with enter
     document.getElementById('searchInput').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
@@ -20,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderButton.addEventListener('click', orderCards);
 
     function orderCards() {
-        
+
         const searchInput = document.getElementById('searchInput');
         const searchValue = searchInput.value.toLowerCase();
 
@@ -36,9 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cardContainer.innerHTML = '';
+        let c_num = 0;
+        palette = generateAnalogousPalette(cards.length)
         filteredCards.forEach(card => {
+            const colour = palette[c_num]
+            c_num++;
+            card.style.border = "thick solid "+colour;
+            card.style.setProperty('--button-colour', colour);
+            card.style.setProperty('--button-text-colour', getOppositeColorRGB(colour));
+            // card.style.backgroundColor = colour;
             cardContainer.appendChild(card);
         });
+
         // if no cards are found, show a message
         if (filteredCards.length === 0) {
             const noResults = document.createElement('div');

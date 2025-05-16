@@ -18,7 +18,7 @@ html {
 
 body {
     margin: 0px;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-family: monospace, "Inter", Arial, Helvetica, sans-serif;
     background-color: var(--background-colour);
     color: var(--light-colour);
 }
@@ -165,23 +165,36 @@ body {
 
 .card {
     text-align: center;
-    background-color: var(--primary-colour);
+    background-color: var(--dark-colour);
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 20%;
     display: inline-block;
-    min-height: 200px;
+    min-height: 220px;
     /* make the content vertically centred  */
     display: flex;
     flex-direction: column;
+    transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    justify-content: space-between; /* Push content to top and bottom */
+}
 
+.card:hover {
+    scale: 1.01;
+    transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card a {
+    margin-top: auto;/* Push to bottom */
 }
 
 .card button {
-    background-color: var(--secondary-colour);
-    color: var(--light-colour);
+    /* --button-colour: #FFaa13; */
+    background-color: var(--button-colour);
+    color: var(--black-colour);
+    /* var(--button-text-colour); */
+    /* text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;  */
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -191,16 +204,27 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: 0.2s ease;
     opacity: 0.8;
 }
 
 /* Add a hover and fade in effect to the button */
 .card button:hover {
+    text-shadow: none;
     background-color: var(--light-colour);
     color: var(--dark-colour);
-    transition: background-color 0.3s ease;
+    transition: 0.2s ease;
     opacity: 0.8;
+}
+
+.card h2 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.card p {
+    margin-top: 0px;
+    padding-top: 10px;
 }
 
 /* Add a black background color to the top navigation */
