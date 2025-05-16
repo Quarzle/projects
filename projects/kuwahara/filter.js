@@ -1,5 +1,103 @@
 let input = document.getElementById("fileInput");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
+function applyKuwaharaFilter(image) {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx.drawImage(image, 0, 0);
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
+    let width = canvas.width;
+    let height = canvas.height;
+
+    let originalData = new Uint8ClampedArray(data);
+    let radius = 2;
+
+    for (let y = radius; y < height - radius; y++) {
+        for (let x = radius; x < width - radius; x++) {
+            let regions = [[], [], [], []];
+
+            for (let dy = -radius; dy <= 0; dy++) {
+                for (let dx = -radius; dx <= 0; dx++) {
+                    let i = ((y + dy) * width + (x + dx)) * 4;
+                    regions[0].push(originalData.slice(i, i + 3));
+                }
+            }
+            for (let dy = -radius; dy <= 0; dy++) {
+                for (let dx = 0; dx <= radius; dx++) {
+                    let i = ((y + dy) * width + (x + dx)) * 4;
+                    regions[1].push(originalData.slice(i, i + 3));
+                }
+            }
+            for (let dy = 0; dy <= radius; dy++) {
+                for (let dx = -radius; dx <= 0; dx++) {
+                    let i = ((y + dy) * width + (x + dx)) * 4;
+                    regions[2].push(originalData.slice(i, i + 3));
+                }
+            }
+            for (let dy = 0; dy <= radius; dy++) {
+                for (let dx = 0; dx <= radius; dx++) {
+                    let i = ((y + dy) * width + (x + dx)) * 4;
+                    regions[3].push(originalData.slice(i, i + 3));
+                }
+            }
+
+            let minVariance = Infinity;
+            let finalColor = [0, 0, 0];
+
+            for (let region of regions) {
+                let sum = [0, 0, 0];
+                let mean = [0, 0, 0];
+                let variance = [0, 0, 0];
+
+                for (let pixel of region) {
+                    for (let c = 0; c < 3; c++) {
+                        sum[c] += pixel[c];
+                    }
+                }
+                let n = region.length;
+                for (let c = 0; c < 3; c++) {
+                    mean[c] = sum[c] / n;
+                }
+
+                for (let pixel of region) {
+                    for (let c = 0; c < 3; c++) {
+                        variance[c] += Math.pow(pixel[c] - mean[c], 2);
+                    }
+                }
+
+                let totalVariance = variance[0] + variance[1] + variance[2];
+
+                if (totalVariance < minVariance) {
+                    minVariance = totalVariance;
+                    finalColor = mean;
+                }
+            }
+
+            let index = (y * width + x) * 4;
+            data[index] = finalColor[0];
+            data[index + 1] = finalColor[1];
+            data[index + 2] = finalColor[2];
+            data[index + 3] = 255;
+        }
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+
+// Load default image on page load
+window.addEventListener("DOMContentLoaded", () => {
+    let defaultImage = new Image();
+    defaultImage.src = "kuwahara_example.jpg"; // Make sure this image is in the correct path
+
+    defaultImage.onload = () => {
+        applyKuwaharaFilter(defaultImage);
+    };
+});
+
+// File input change handler
 input.addEventListener("change", function (e) {
     let image_file = e.target.files[0];
     let reader = new FileReader();
@@ -7,57 +105,11 @@ input.addEventListener("change", function (e) {
 
     reader.onload = (event) => {
         let image_url = event.target.result;
-        let image = document.createElement("img");
+        let image = new Image();
         image.src = image_url;
 
         image.onload = () => {
-            let canvas = document.getElementById("canvas");
-            let ctx = canvas.getContext("2d");
-            canvas.width = image.width;
-            canvas.height = image.height;
-            ctx.drawImage(image, 0, 0);
-
-            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            let data = imageData.data;
-
-            // Apply box blur filter
-            let originalData = new Uint8ClampedArray(data);
-
-            let width = canvas.width;
-            let height = canvas.height;
-            let kernelSize = 5;
-            let half = Math.floor(kernelSize / 2);
-
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    let r = 0, g = 0, b = 0, count = 0;
-
-                    for (let ky = -half; ky <= half; ky++) {
-                        for (let kx = -half; kx <= half; kx++) {
-                            let px = x + kx;
-                            let py = y + ky;
-
-                            if (px >= 0 && px < width && py >= 0 && py < height) {
-                                let index = (py * width + px) * 4;
-                                r += originalData[index];
-                                g += originalData[index + 1];
-                                b += originalData[index + 2];
-                                count++;
-                            }
-                        }
-                    }
-
-                    let i = (y * width + x) * 4;
-                    data[i] = r / count;
-                    data[i + 1] = g / count;
-                    data[i + 2] = b / count;
-                    // Preserve alpha channel
-                    data[i + 3] = originalData[i + 3];
-                }
-            }
-
-            // draw the filtered image to the canvas
-            ctx.putImageData(imageData, 0, 0);
-        }
-    }
+            applyKuwaharaFilter(image);
+        };
+    };
 });
