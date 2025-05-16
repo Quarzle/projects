@@ -42,7 +42,7 @@
     for (let i = 0; i < numColors; i++) {
       const hueOffset = (i - Math.floor(numColors / 2)) * 80; // Adjust the hue to make them analogous
       const hue = (baseHue + hueOffset + 360) % 360; // Wrap around the hue to stay within 0-360 range
-      const color = hslToRgb(hue, 90, 75); // Use a fixed saturation (80) and lightness (60) for consistency
+      const color = hslToRgb(hue, 90, 80); // Use a fixed saturation and lightness for consistency
       palette.push(color);
     }
 
@@ -58,26 +58,26 @@ function getRandomColor() {
     return color;
 }
 
-function getOppositeColorRGB(colour) {
-    // Remove the '#' from the beginning of the color hex string
-    colour = colour.substring(1);
-    
-    // Convert the hex to RGB
-    var r = parseInt(colour.substring(0, 2), 16);
-    var g = parseInt(colour.substring(2, 4), 16);
-    var b = parseInt(colour.substring(4, 6), 16);
+function getOppositeColor(colour) {
+  //colour is rgb format
+  
+  // parse the rgb:
+  var rgb = colour.match(/\d+/g);
+  var r = parseInt(rgb[0]);
+  var g = parseInt(rgb[1]);
+  var b = parseInt(rgb[2]);
 
-    // Calculate the opposite (complementary) color by subtracting each component from 255
-    var oppositeR = 255 - r;
-    var oppositeG = 255 - g;
-    var oppositeB = 255 - b;
+  // Calculate the opposite (complementary) color by subtracting each component from 255
+  var oppositeR = 255 - r;
+  var oppositeG = 255 - g;
+  var oppositeB = 255 - b;
 
-    // Convert the RGB components back to hex and ensure each is two digits
-    var oppositeHex = "#" + 
-        oppositeR.toString(16).padStart(2, '0') + 
-        oppositeG.toString(16).padStart(2, '0') + 
-        oppositeB.toString(16).padStart(2, '0');
+  // Convert the RGB components back to hex and ensure each is two digits
+  var oppositeRGB = "rgb(" + 
+      oppositeR + "," +
+      oppositeG + "," +
+      oppositeB +")";
 
-    // Return the opposite color in hex format
-    return oppositeHex.toUpperCase(); // Make it uppercase for consistency
+  // Return the opposite color in hex format
+  return oppositeRGB;
 }

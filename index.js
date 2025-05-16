@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         c_num++;
         card.style.border = "thick solid "+colour;
         card.style.setProperty('--button-colour', colour);
-        card.style.setProperty('--button-text-colour', getOppositeColorRGB(colour));
+        card.style.setProperty('--button-text-colour', getOppositeColor(colour));
         // card.style.backgroundColor = colour;
         cardContainer.appendChild(card);
     });

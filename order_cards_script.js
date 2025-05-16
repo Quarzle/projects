@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             c_num++;
             card.style.border = "thick solid "+colour;
             card.style.setProperty('--button-colour', colour);
-            card.style.setProperty('--button-text-colour', getOppositeColorRGB(colour));
+            card.style.setProperty('--button-text-colour', getOppositeColor(colour));
             // card.style.backgroundColor = colour;
             cardContainer.appendChild(card);
         });
@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filteredCards.length === 0) {
             const noResults = document.createElement('div');
             noResults.textContent = 'No projects found';
-            noResults.className = 'no-results';
+            noResults.className = 'no_results';
             cardContainer.appendChild(noResults);
         } else {
-            const noResults = document.querySelector('.no-results');
+            const noResults = document.querySelector('.no_results');
             if (noResults) {
                 cardContainer.removeChild(noResults);
             }
