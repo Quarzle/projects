@@ -68,19 +68,29 @@ function draw() {
             let minDist = Infinity;
             let closestTarget = null;
 
-            positions.forEach((otherRow, m) => {
-                otherRow.forEach(([x2, y2], n) => {
-                    const tgt = [m, n];
-                    if (tgt.toString() === src.toString()) return; // Skip the same point
-                    if (connections.has(`${tgt},${src}`)) return; // Skip mutual connections
+            // Check only the 8 surrounding cells
+            for (let di = -1; di <= 1; di++) {
+                for (let dj = -1; dj <= 1; dj++) {
+                    if (di === 0 && dj === 0) continue; // Skip the same cell
 
-                    const dist = distanceSquared([x1, y1], [x2, y2]);
-                    if (dist < minDist) {
-                        minDist = dist;
-                        closestTarget = tgt;
+                    const ni = i + di;
+                    const nj = j + dj;
+
+                    // Ensure the neighbor is within bounds
+                    if (ni >= 0 && ni < ROWS && nj >= 0 && nj < COLS) {
+                        const [x2, y2] = positions[ni][nj];
+                        const tgt = [ni, nj];
+
+                        if (connections.has(`${tgt},${src}`)) continue; // Skip mutual connections
+
+                        const dist = distanceSquared([x1, y1], [x2, y2]);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closestTarget = tgt;
+                        }
                     }
-                });
-            });
+                }
+            }
 
             if (closestTarget) {
                 const [m, n] = closestTarget;
