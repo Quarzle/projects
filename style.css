@@ -84,13 +84,15 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: 0.2s ease;
+    border: 2px solid var(--secondary-colour);
 }
 
 .search_bar button:hover {
     background-color: var(--light-colour);
     color: var(--dark-colour);
-    transition: background-color 0.3s ease;
+    transition: 0.2s ease;
+    border: 2px solid var(--light-colour);
 }
 
 .search_bar input[type=text] {
