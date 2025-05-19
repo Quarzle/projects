@@ -25,3 +25,9 @@ h3 {
     margin: 3px;
     padding: 0px;
 }
+
+@media screen and (max-width: 500px) {
+    .dice_holder {
+        width: 89%;
+    }
+}
