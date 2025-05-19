@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dice roller</title>
+        <link rel="stylesheet" href="../../style.css">
+        <script src="../../responsive_script.js"></script>
+        <script src="../../generate_colours.js"></script>
+        <link rel="stylesheet" href="../../normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="customstyles.css">
+    </head>
+    <body>
+        <div class="topnav" id="myTopnav">
+            <a href="../../index.html">Home</a>
+            <a href="../../projects.html" class="active">Projects</a>
+            <a href="../../contact.html">Contact</a>
+            <a href="../../about.html">About</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div class="main_content">
+            <div class="page_info">
+                <h1>Dice roller</h1>
+                <hr>
+                <p>Basic dice rolling program</p>
+            </div>
+            <br>
+            <div class="dice_holder" id="diceHolder">
+                <div class="die" id="d4">
+                    <h3>D4</h3>
+                    <p>1-4</p>
+                    <button class="button_basic" onclick="roll(4)">Roll</button>
+                </div>
+                <div class="die" id="d6">
+                    <h3>D6</h3>
+                    <p>1-6</p>
+                    <button class="button_basic" onclick="roll(6)">Roll</button>
+                </div>
+                <div class="die" id="d8">
+                    <h3>D8</h3>
+                    <p>1-8</p>
+                    <button class="button_basic" onclick="roll(8)">Roll</button>
+                </div>
+                <div class="die" id="d10">
+                    <h3>D10</h3>
+                    <p>1-10</p>
+                    <button class="button_basic" onclick="roll(10)">Roll</button>
+                </div>
+                <div class="die" id="d12">
+                    <h3>D12</h3>
+                    <p>1-12</p>
+                    <button class="button_basic" onclick="roll(12)">Roll</button>
+                </div>
+                <div class="die" id="d20">
+                    <h3>D20</h3>
+                    <p>1-20</p>
+                    <button class="button_basic" onclick="roll(20)">Roll</button>
+                </div>
+            </div>
+            <br>
+        </div>    
+        <div class="footer">
+            <!-- &copy; 2025 --> 
+            <a href="../../index.html">Home</a> |
+            <a href="../../projects.html">Projects</a> |
+            <a href="../../contact.html">Contact</a> |
+            <a href="../../about.html">About</a>
+        </div>
+    </body>
+    <script src="dice.js"></script>
+</html>
