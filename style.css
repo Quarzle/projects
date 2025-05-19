@@ -21,6 +21,10 @@ body {
     font-family: monospace, "Inter", Arial, Helvetica, sans-serif;
     background-color: var(--background-colour);
     color: var(--light-colour);
+    background-image:
+		radial-gradient(circle at bottom, rgba(0, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.8) 80%),
+		url(https://www.transparenttextures.com/patterns/light-wool.png);
+    /* background-attachment: fixed; */
 }
 
 .about {
@@ -144,6 +148,8 @@ body {
 .page_info {
     margin: 0px 40px 40px 40px;
     background-color: inherit;
+    background-image: inherit;
+    background-size: inherit;
     color: inherit;
     padding: 20px;
     text-align: center;
@@ -166,6 +172,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: var(--dark-colour);
     padding-bottom: 20px;
+    /* background-image: url("https://www.transparenttextures.com/patterns/gun-metal.png"); */
 }
 
 .card_holder {
@@ -190,6 +197,7 @@ body {
     flex-direction: column;
     transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
     justify-content: space-between; /* Push content to top and bottom */
+    background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
 }
 
 .card:hover {
