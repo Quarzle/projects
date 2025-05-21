@@ -205,6 +205,15 @@ body {
     transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+.card-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.5em;
+    pointer-events: none; /* Allows click-through */
+    z-index: 2;
+}
+
 .card a {
     margin-top: auto;/* Push to bottom */
 }
