@@ -198,10 +198,11 @@ body {
     transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
     justify-content: space-between; /* Push content to top and bottom */
     background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
+    scale: 1.001;
 }
 
 .card:hover {
-    scale: 1.01;
+    scale: 1.011;
     transition: scale 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 

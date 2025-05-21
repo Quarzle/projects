@@ -34,7 +34,7 @@ const projectCards = [
         title: "Hatching demo",
         description: "A proof of concept 3d shader demo made with godot",
         link: "projects/hatching_demo/demo_download.html",
-        meta: "2025-games"
+        meta: "2025-misc"
     },
     {
         title: "Old songs",
@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function orderCards() {
+        //alert(getCookie("is_fav"))
         const searchValue = document.getElementById('searchInput').value.toLowerCase();
 
         const filtered = projectCards.filter(({ title, description, meta }) => {
@@ -173,9 +174,11 @@ function onCardClick(project, cardElement) {
     // Check if the icon already exists
     if (cardElement.querySelector('.card-icon')) {
         cardElement.querySelector('.card-icon').remove()
+        //setCookie("is_fav", "false", 10)
         return
     }
-
+    
+    //setCookie("is_fav", "true", 10)
     const icon = document.createElement('div');
     icon.className = 'card-icon';
     icon.innerHTML = '⭐'; // You can use any emoji, icon, or even SVG
