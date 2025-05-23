@@ -169,6 +169,20 @@ document.addEventListener('DOMContentLoaded', () => {
         filtered.sort((a, b) => a.title.localeCompare(b.title));
         renderCards(filtered);
     }
+    
+function initializeFavourites() {
+    const favourites = getCookie('favourites') || [];
+    
+    favourites.forEach(project => {
+        const cardElement = document.querySelector(`[data-project="${project}"]`);
+        if (cardElement && !cardElement.querySelector('.card-icon')) {
+            const icon = document.createElement('div');
+            icon.className = 'card-icon';
+            icon.innerHTML = '⭐';
+            cardElement.appendChild(icon);
+        }
+    });
+}
 
 function onCardClick(project, cardElement) {
     // Check if the icon already exists
