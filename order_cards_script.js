@@ -77,6 +77,12 @@ const projectCards = [
         description: "For all your dice rolling needs",
         link: "projects/diceroller/dice.html",
         meta: "2025-misc-tools-website"
+    },
+	{
+        title: "The Tower",
+        description: "An ascii art game about escaping a tower",
+		link: "projects/the_tower/tower.html",
+        meta: "2025-games"
     }
 ];
 
@@ -120,11 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
         metaEl.textContent = meta;
 
         // event listener for favourites
-        card.addEventListener('click', (e) => {
-            if (!e.target.closest('a')) {
-                onCardClick(title, card);
-            }
-        });
+        // card.addEventListener('click', (e) => {
+        //     if (!e.target.closest('a')) {
+        //         onCardClick(title, card);
+        //     }
+        // });
 
         card.append(titleEl, descEl, linkEl, metaEl);
         return card;
