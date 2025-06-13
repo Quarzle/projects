@@ -83,6 +83,12 @@ const projectCards = [
         description: "An ascii art game about escaping a tower",
 		link: "projects/the_tower/tower.html",
         meta: "2025-games"
+    },
+	{
+        title: "Word finder",
+        description: "Find definitions and phonetic spellings of words",
+		link: "projects/word_finder/words.html",
+        meta: "2025-website-misc"
     }
 ];
 
