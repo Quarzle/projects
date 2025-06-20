@@ -132,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
         metaEl.textContent = meta;
 
         // event listener for favourites
-        // card.addEventListener('click', (e) => {
-        //     if (!e.target.closest('a')) {
-        //         onCardClick(title, card);
-        //     }
-        // });
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('a')) {
+                toggleFavourite(title, card);
+            }
+        });
 
         card.append(titleEl, descEl, linkEl, metaEl);
         return card;
@@ -148,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const palette = generateAnalogousPalette(cardData.length);
 
         cardData.forEach(project => {
-            const card = createCardElement(project);
+			const card = createCardElement(project);
+			
             const colour = palette[c_num];
             c_num++;
 
@@ -156,6 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--button-colour', colour);
             card.style.setProperty('--button-text-colour', getOppositeColor(colour));
             cardContainer.appendChild(card);
+			const isFavourited = JSON.parse(localStorage.getItem(project.title + "-is_favourited")) || false;
+			if (isFavourited) {
+				toggleFavourite(project.title, card);
+			}
         });
 
         if (cardData.length === 0) {
@@ -165,46 +170,40 @@ document.addEventListener('DOMContentLoaded', () => {
             cardContainer.appendChild(noResults);
         }
     }
+	function orderCards() {
+		const searchValue = document.getElementById('searchInput').value.toLowerCase();
 
-    function orderCards() {
-        //alert(getCookie("is_fav"))
-        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+		const filtered = projectCards.filter(({ title, description, meta }) => {
+			return (
+				title.toLowerCase().includes(searchValue) ||
+				description.toLowerCase().includes(searchValue) ||
+				meta.toLowerCase().includes(searchValue)
+			);
+		});
 
-        const filtered = projectCards.filter(({ title, description, meta }) => {
-            return (
-                title.toLowerCase().includes(searchValue) ||
-                description.toLowerCase().includes(searchValue) ||
-                meta.toLowerCase().includes(searchValue)
-            );
-        });
+		// Sort: favourited first, then by title
+		filtered.sort((a, b) => {
+			const aFav = JSON.parse(localStorage.getItem(a.title + "-is_favourited")) || false;
+			const bFav = JSON.parse(localStorage.getItem(b.title + "-is_favourited")) || false;
+			if (aFav === bFav) {
+				return a.title.localeCompare(b.title);
+			}
+			return bFav - aFav; // true (1) before false (0)
+		});
 
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
-        renderCards(filtered);
-    }
-    
-function initializeFavourites() {
-    const favourites = getCookie('favourites') || [];
-    
-    favourites.forEach(project => {
-        const cardElement = document.querySelector(`[data-project="${project}"]`);
-        if (cardElement && !cardElement.querySelector('.card-icon')) {
-            const icon = document.createElement('div');
-            icon.className = 'card-icon';
-            icon.innerHTML = '⭐';
-            cardElement.appendChild(icon);
-        }
-    });
-}
+		renderCards(filtered);
+	}
 
-function onCardClick(project, cardElement) {
+function toggleFavourite(project, cardElement) {
     // Check if the icon already exists
+	const project_status = JSON.parse(localStorage.getItem(project+"-is_favourited")) || false;
     if (cardElement.querySelector('.card-icon')) {
         cardElement.querySelector('.card-icon').remove()
-        //setCookie("is_fav", "false", 10)
+		localStorage.setItem(project+"-is_favourited", JSON.stringify(false));
         return
     }
     
-    //setCookie("is_fav", "true", 10)
+	localStorage.setItem(project+"-is_favourited", JSON.stringify(true));
     const icon = document.createElement('div');
     icon.className = 'card-icon';
     icon.innerHTML = '⭐'; // You can use any emoji, icon, or even SVG
