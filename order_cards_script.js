@@ -88,6 +88,12 @@ const projectCards = [
         title: "Word finder",
         description: "Find definitions and phonetic spellings of words",
 		link: "projects/word_finder/words.html",
+        meta: "2025-website-misc-tools"
+    },
+	{
+        title: "WebGPU Boids",
+        description: "A boids simulation rendered using WebGPU",
+		link: "projects/gravity/gravity.html",
         meta: "2025-website-misc"
     }
 ];
