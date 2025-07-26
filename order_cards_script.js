@@ -95,6 +95,12 @@ const projectCards = [
         description: "A boids simulation rendered using WebGPU",
 		link: "projects/gravity/gravity.html",
         meta: "2025-website-misc"
+    },
+	{
+        title: "Softbody simulation",
+        description: "A softbody simulation running in the browser",
+		link: "projects/softbody/softbody.html",
+        meta: "2025-website-misc"
     }
 ];
 

@@ -1,0 +1,55 @@
+canvas {
+    border: 1px solid #000;
+    text-align: center;
+    margin: auto;
+    border-radius: 4px;
+    width: 100%;
+}
+
+canvas:hover {
+	cursor: grab;
+}
+
+canvas.grabbing-cursor {
+	cursor: grabbing;
+	cursor: -webkit-grabbing; /* For WebKit browsers */
+}
+
+.button_toggle {
+    background-color: var(--secondary-colour);
+    color: var(--light-colour);
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button_toggle:hover {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+    transition: background-color 0.3s ease;
+}
+
+p {
+    text-align: center;
+    margin: auto;
+    color: var(--light-colour);
+    width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+    p {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    p {
+        width: 100%;
+    }
+}
