@@ -102,6 +102,22 @@ function physicsUpdate() {
 	}
 
 	// Handle mouse interaction
+	let in_range = false;
+	for (let i = 0; i < SOFTBODY_NODES; i++) {
+		const p = positions[i];
+		const dx = mouseX - p.x;
+		const dy = mouseY - p.y;
+		const dist_sq = dx * dx + dy * dy;
+
+		if (dist_sq < 1000) { // 100^2
+			in_range = true;
+		}
+	}
+	if (in_range) {
+		canvas.classList.add('grabable-cursor');
+	}else {
+		canvas.classList.remove('grabable-cursor');
+	}
 	if (mouseDown) {
 		for (let i = 0; i < SOFTBODY_NODES; i++) {
 			const p = positions[i];

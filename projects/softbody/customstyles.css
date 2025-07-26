@@ -7,7 +7,12 @@ canvas {
 }
 
 canvas:hover {
+	cursor: auto;
+}
+
+canvas.grabable-cursor {
 	cursor: grab;
+	cursor: -webkit-grab; /* For WebKit browsers */
 }
 
 canvas.grabbing-cursor {
