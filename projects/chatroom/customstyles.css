@@ -48,3 +48,8 @@ h1 {
 	color: #ffffff;
 	text-align: center;
 }
+
+.messagesList div {
+	margin: 10px;
+	width: 90%;
+}
