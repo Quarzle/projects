@@ -101,6 +101,12 @@ const projectCards = [
         description: "A softbody simulation running in the browser",
 		link: "projects/softbody/softbody.html",
         meta: "2025-website-misc"
+    },
+	{
+        title: "Internet Chatroom",
+        description: "A simple chatroom hosted with firebase",
+		link: "projects/chatroom/chats.html",
+        meta: "2025-website-misc"
     }
 ];
 

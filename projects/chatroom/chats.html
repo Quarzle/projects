@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Chatroom</title>
+        <link rel="stylesheet" href="../../style.css">
+        <script src="../../responsive_script.js"></script>
+        <link rel="stylesheet" href="../../normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="customstyles.css">
+    </head>
+    <body>
+        <div class="topnav" id="myTopnav">
+            <a href="../../index.html">Home</a>
+            <a href="../../projects.html" class="active">Projects</a>
+            <a href="../../contact.html">Contact</a>
+            <a href="../../about.html">About</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div class="main_content">
+            <h1>Test page</h1>
+			<p>This is a test page for Firebase integration.</p>
+			<input type="text" id="nameInput" placeholder="Type your username here">
+			<div class="message-input">
+				<input type="text" id="messageInput" placeholder="Type your message here">
+				<button id="sendMessageButton">Send Message</button>
+			</div>
+			<div id="messagesList"></div>
+			
+			<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js" async defer type="module"></script>
+			<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js" async defer type="module"></script>
+			<script type="module">
+				// Import the functions you need from the SDKs you need
+				import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+				import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+				import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+
+				// Your web app's Firebase configuration
+				const firebaseConfig = {
+					apiKey: "AIzaSyAPGPKAs7h8hHcvca30QFnjcvfQDRJeY5Q",
+					authDomain: "everchats.firebaseapp.com",
+					projectId: "everchats",
+					storageBucket: "everchats.firebasestorage.app",
+					messagingSenderId: "692719648230",
+					appId: "1:692719648230:web:0f5edee151321ebc412a27",
+					measurementId: "G-4SWNFQL9ZX"
+				};
+
+				// Initialize Firebase
+				const app = initializeApp(firebaseConfig);
+				const analytics = getAnalytics(app);
+				const db = getFirestore(app);
+
+				console.log('Firebase initialized:', app);
+
+				// Get messages from Firestore
+				async function getMessages(db) {
+					const messagesCol = collection(db, 'messages');
+					const messageSnapshot = await getDocs(messagesCol);
+					const messageList = messageSnapshot.docs.map(doc => doc.data());
+					return messageList;
+				}
+
+				// Add a message to Firestore
+				async function addMessage(db, message) {
+					const messagesCol = collection(db, 'messages');
+					await addDoc(messagesCol, message);
+				}
+
+				// Event listener for sending messages
+				document.getElementById('sendMessageButton').addEventListener('click', async () => {
+					const nameInput = document.getElementById('nameInput');
+					const messageInput = document.getElementById('messageInput');
+					const username = nameInput.value.trim() || "Anonymous";
+					const message = { 
+						username: username, 
+						text: messageInput.value, 
+						timestamp: new Date() 
+					};
+					await addMessage(db, message);
+					messageInput.value = '';
+					loadMessages();
+				});
+
+				// Load messages on page load
+				async function loadMessages() {
+					const messagesList = document.getElementById('messagesList');
+					const messages = await getMessages(db);
+					messagesList.innerHTML = '';
+					// Sort messages by timestamp ascending
+					messages.sort((b, a) => {
+						const tA = a.timestamp && a.timestamp.toDate ? a.timestamp.toDate() : new Date(a.timestamp);
+						const tB = b.timestamp && b.timestamp.toDate ? b.timestamp.toDate() : new Date(b.timestamp);
+						return tA - tB;
+					});
+					messages.forEach(msg => {
+						const time = msg.timestamp && msg.timestamp.toDate ? msg.timestamp.toDate().toLocaleString() : new Date(msg.timestamp).toLocaleString();
+						const username = msg.username || "Anonymous";
+						const messageElement = document.createElement('div');
+						messageElement.textContent = `[${username}] ${time}: ${msg.text}`;
+						messagesList.appendChild(messageElement);
+					});
+				}
+
+				// Load messages on page load
+				window.onload = loadMessages;
+
+				// update messages every 5 seconds
+				setInterval(loadMessages, 5000);
+			</script>
+        </div>    
+        <div class="footer">
+            <!-- &copy; 2025 --> 
+            <a href="../../index.html">Home</a> |
+            <a href="../../projects.html">Projects</a> |
+            <a href="../../contact.html">Contact</a> |
+            <a href="../../about.html">About</a>
+        </div>
+    </body>
+</html>
