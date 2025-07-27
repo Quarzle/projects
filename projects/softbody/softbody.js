@@ -137,25 +137,32 @@ function physicsUpdate() {
 	}
 }
 
-
 function draw() {
     // Clear canvas
     ctx.fillStyle = SCREEN_COLOR;
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-	// Draw lines between nodes
-	for (let i = 0; i < SOFTBODY_NODES; i++) {
-		const p1 = positions[i];
-		const p2 = positions[(i + 1) % SOFTBODY_NODES]; // wrap around to create a loop
-		ctx.beginPath();
-		ctx.moveTo(p1.x, p1.y);
-		ctx.lineTo(p2.x, p2.y);
-		ctx.strokeStyle = LINE_COLOR;
-		ctx.lineWidth = 2;
-		ctx.stroke();
-	}
+    // --- Fill the blob as a polygon ---
+    ctx.beginPath();
+    ctx.moveTo(positions[0].x, positions[0].y);
+    for (let i = 1; i < SOFTBODY_NODES; i++) {
+        ctx.lineTo(positions[i].x, positions[i].y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = LINE_COLOR; // fill color of the blob
+    ctx.fill();
 
-	
+    // --- Draw the blob outline ---
+    for (let i = 0; i < SOFTBODY_NODES; i++) {
+        const p1 = positions[i];
+        const p2 = positions[(i + 1) % SOFTBODY_NODES]; // wrap around
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = LINE_COLOR;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
 }
 
 initPositions();
