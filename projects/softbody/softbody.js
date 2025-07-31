@@ -109,7 +109,7 @@ function physicsUpdate() {
 		const dy = mouseY - p.y;
 		const dist_sq = dx * dx + dy * dy;
 
-		if (dist_sq < 1500) { // 100^2
+		if (dist_sq < 1600) { // 100^2
 			in_range = true;
 		}
 	}
